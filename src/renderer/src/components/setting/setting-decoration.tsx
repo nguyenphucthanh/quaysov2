@@ -49,10 +49,16 @@ export const SettingDecoration: FC = () => {
   const settingStore = useSettingStore();
   const { isAnimating, startAnimation } = useAnimatedEmoji();
 
-  const handleSelectImage = useCallback(async () => {
+  const handleSelectImage = useCallback(() => {
     // @ts-expected-error electron is defined
-    const path = await window.electron.selectImage();
-    settingStore.setBackgroundImagePath(path);
+    window.electron
+      .selectImage()
+      .then((path) => {
+        settingStore.setBackgroundImagePath(path);
+      })
+      .catch((error) => {
+        console.log("select image error", error);
+      });
   }, [settingStore]);
 
   const clearImage = () => {
@@ -86,7 +92,11 @@ export const SettingDecoration: FC = () => {
       <FormControl label="Banner">
         <div className="bg-base-300 p-2 rounded-xl">
           <div className="grid grid-cols-2 gap-2">
-            <FormControl label="Trên" name="bannerPosition" className="flex flex-row-reverse gap-2 items-center justify-end">
+            <FormControl
+              label="Trên"
+              name="bannerPosition"
+              className="flex flex-row-reverse gap-2 items-center justify-end"
+            >
               <input
                 title="Top"
                 type="radio"
@@ -96,7 +106,11 @@ export const SettingDecoration: FC = () => {
                 onChange={() => settingStore.setBannerPosition("top")}
               />
             </FormControl>
-            <FormControl label="Dưới" name="bannerPosition" className="flex gap-2 items-center flex-row-reverse justify-end">
+            <FormControl
+              label="Dưới"
+              name="bannerPosition"
+              className="flex gap-2 items-center flex-row-reverse justify-end"
+            >
               <input
                 title="Bottom"
                 type="radio"
@@ -216,6 +230,7 @@ export const SettingDecoration: FC = () => {
                 <div className="grid grid-cols-2 gap-2">
                   {["bg-contain", "bg-cover"].map((bg) => (
                     <button
+                      key={bg}
                       className={cn(
                         "btn btn-secondary w-full",
                         settingStore.backgroundSize === bg
@@ -243,6 +258,7 @@ export const SettingDecoration: FC = () => {
                     "bg-right-bottom",
                   ].map((bg) => (
                     <button
+                      key={bg}
                       className={cn(
                         "btn btn-secondary w-full",
                         settingStore.backgroundPosition === bg

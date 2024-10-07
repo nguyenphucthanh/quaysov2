@@ -13,7 +13,13 @@ export const useElectronImage = (filePath?: string | null) => {
       setBase64(result);
     };
 
-    get();
+    get()
+      .then(() => {
+        console.log("get image success");
+      })
+      .catch((error) => {
+        console.log("get image error", error);
+      });
   }, [filePath]);
 
   return base64;

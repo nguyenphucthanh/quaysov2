@@ -8,11 +8,7 @@ import {
   useState,
 } from "react";
 import { motion } from "framer-motion";
-import {
-  randomFloatMinMax,
-  randomFromArray,
-  randomMinMax,
-} from "@lib/random";
+import { randomFloatMinMax, randomFromArray, randomMinMax } from "@lib/random";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useSettingStore } from "@store/setting";
 
@@ -22,7 +18,9 @@ export type AnimatedEmoji = {
 };
 
 export const AnimatedEmojiContext = createContext<AnimatedEmoji>({
-  startAnimation: () => {},
+  startAnimation: () => {
+    console.log("startAnimation");
+  },
   isAnimating: false,
 });
 

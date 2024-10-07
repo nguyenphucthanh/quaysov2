@@ -121,7 +121,7 @@ export const Ballot: FC<BallotProps> = ({ zeroPrefix, numberLength }) => {
 
   const isRangeValid = min < max;
 
-  const start = useCallback(() => {
+  const start = useCallback(async () => {
     const lengthOfNumber = numberLength ?? max.toString().length;
     const interval = setInterval(() => {
       let numString = genNumber(min, max, zeroPrefix, lengthOfNumber);
@@ -134,11 +134,11 @@ export const Ballot: FC<BallotProps> = ({ zeroPrefix, numberLength }) => {
 
     if (ballotSoundRef.current) {
       ballotSoundRef.current.currentTime = 0;
-      ballotSoundRef.current?.play();
+      await ballotSoundRef.current?.play();
     }
   }, [lotteryStore.history, max, min, numberLength, zeroPrefix]);
 
-  const stop = useCallback(() => {
+  const stop = useCallback(async () => {
     if (runInterval) {
       clearInterval(runInterval);
       setRunInterval(null);
@@ -151,7 +151,7 @@ export const Ballot: FC<BallotProps> = ({ zeroPrefix, numberLength }) => {
 
       if (tadahSoundRef.current) {
         tadahSoundRef.current.currentTime = 0;
-        tadahSoundRef.current.play();
+        await tadahSoundRef.current.play();
       }
 
       onStop();
@@ -198,9 +198,21 @@ export const Ballot: FC<BallotProps> = ({ zeroPrefix, numberLength }) => {
           })}
           onClick={() => {
             if (runInterval) {
-              stop();
+              stop()
+                .then(() => {
+                  console.log("stop");
+                })
+                .catch((error) => {
+                  console.log("stop error", error);
+                });
             } else {
-              start();
+              start()
+                .then(() => {
+                  console.log("start");
+                })
+                .catch((error) => {
+                  console.log("start error", error);
+                });
             }
           }}
           disabled={!isRangeValid}
