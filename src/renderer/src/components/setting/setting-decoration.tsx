@@ -70,23 +70,28 @@ export const SettingDecoration: FC = () => {
   return (
     <div className="flex flex-col gap-4 items-stretch">
       <FormControl label="Theme" name="theme">
-        <select
-          title="Chọn theme"
-          name="theme"
-          className="select w-full"
-          value={settingStore.theme}
-          onChange={(e) => {
-            settingStore.setTheme(e.target.value);
-          }}
-          data-choose-theme
-        >
-          <option disabled>Theme</option>
+        <div className="grid grid-cols-5 gap-2">
           {themes.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
+            <div
+              key={t}
+              role="button"
+              className={cn(
+                "ring grid grid-cols-4 rounded-sm h-6 overflow-hidden cursor-pointer",
+                settingStore.theme === t ? "ring-primary" : "ring-transparent"
+              )}
+              data-theme={t}
+              data-set-theme={t}
+              onClick={() => {
+                settingStore.setTheme(t)
+              }}
+            >
+              <span className="bg-primary"></span>
+              <span className="bg-secondary"></span>
+              <span className="bg-accent"></span>
+              <span className="bg-neutral"></span>
+            </div>
           ))}
-        </select>
+        </div>
       </FormControl>
 
       <FormControl label="Banner">
