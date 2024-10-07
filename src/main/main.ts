@@ -1,10 +1,11 @@
-import { app, shell, BrowserWindow, dialog, ipcMain } from "electron";
+import { app, shell, BrowserWindow, dialog, ipcMain, Tray, nativeImage } from "electron";
 import { join, dirname, basename } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 // import icon from '../../resources/icon.png?asset'
 import fs from "fs-extra";
 
 function createWindow(): void {
+  const icon = nativeImage.createFromPath(join(__dirname, "../icon.png"));
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1600,
@@ -16,7 +17,12 @@ function createWindow(): void {
       preload: join(__dirname, "../preload/preload.mjs"),
       sandbox: false,
     },
+    icon,
+    title: "Quay số",
   });
+
+  const tray = new Tray(icon);
+  tray.setToolTip("Quay số");
 
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();

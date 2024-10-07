@@ -7,6 +7,7 @@ import { useLotteryStore } from "@store/lottery";
 import { cn } from "@lib/utils";
 import { useAnimatedEmoji } from "@hooks/useAnimatedEmoji";
 import { motion } from "framer-motion";
+import { BorderBeam } from "@components/ui/border-beam";
 
 const buttonClasses = cva(
   [
@@ -44,6 +45,9 @@ const boxClasses = cva(
     "rounded-3xl",
     "bg-base-100",
     "overflow-hidden",
+    "relative",
+    "min-w-[500px]",
+    "min-h-[400px]",
   ],
   {
     variants: {
@@ -244,6 +248,9 @@ export const Ballot: FC<BallotProps> = ({ zeroPrefix, numberLength }) => {
           }}
         />
       </div>
+      {runInterval ? null : (
+        <BorderBeam borderWidth={5} size={300} duration={5} />
+      )}
     </motion.div>
   );
 };

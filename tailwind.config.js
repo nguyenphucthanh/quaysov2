@@ -2,7 +2,18 @@
 module.exports = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+      },
+      keyframes: {
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
+      },
+    },
   },
   plugins: [require("tailwindcss-animate"), require("daisyui")],
   daisyui: {
@@ -74,16 +85,16 @@ module.exports = {
           error: "#FF6347", // Tomato red for error
         },
         kiddo: {
-          "primary": "#FF5733",  // Crayon red for primary
-          "secondary": "#FFBD33",  // Crayon yellow for secondary
-          "accent": "#33FF57",  // Crayon green for accent
-          "neutral": "#FFFFFF",  // White for neutral
-          "base-100": "#F0F8FF",  // Alice blue for base background
-          "info": "#33A1FF",  // Crayon blue for info
-          "success": "#FFC300",  // Crayon gold for success
-          "warning": "#FF5733",  // Crayon red-orange for warning
-          "error": "#C70039"  // Crayon dark red for error
-        }
+          primary: "#FF5733", // Crayon red for primary
+          secondary: "#FFBD33", // Crayon yellow for secondary
+          accent: "#33FF57", // Crayon green for accent
+          neutral: "#FFFFFF", // White for neutral
+          "base-100": "#F0F8FF", // Alice blue for base background
+          info: "#33A1FF", // Crayon blue for info
+          success: "#FFC300", // Crayon gold for success
+          warning: "#FF5733", // Crayon red-orange for warning
+          error: "#C70039", // Crayon dark red for error
+        },
       },
     ],
   },

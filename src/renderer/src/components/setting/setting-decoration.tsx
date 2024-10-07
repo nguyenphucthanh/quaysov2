@@ -125,30 +125,32 @@ export const SettingDecoration: FC = () => {
       </FormControl>
 
       <FormControl label="Độ trong suốt của hộp số" name="boxNumber">
-        <input
-          title="Độ trong suốt của hộp số"
-          type="range"
-          min={0}
-          max="100"
-          step={10}
-          value={settingStore.ballotBoxOpacity}
-          className="range"
-          onChange={(e) => {
-            settingStore.setBallotBoxOpacity(parseInt(e.target.value));
-          }}
-        />
-        <div className="w-full flex justify-between text-xs px-2">
-          <span>0</span>
-          <span>10</span>
-          <span>20</span>
-          <span>30</span>
-          <span>40</span>
-          <span>50</span>
-          <span>60</span>
-          <span>70</span>
-          <span>80</span>
-          <span>90</span>
-          <span>100</span>
+        <div className="bg-base-300 p-2 rounded-xl">
+          <input
+            title="Độ trong suốt của hộp số"
+            type="range"
+            min={0}
+            max="100"
+            step={10}
+            value={settingStore.ballotBoxOpacity}
+            className="range"
+            onChange={(e) => {
+              settingStore.setBallotBoxOpacity(parseInt(e.target.value));
+            }}
+          />
+          <div className="w-full flex justify-between text-xs">
+            <span>0</span>
+            <span>10</span>
+            <span>20</span>
+            <span>30</span>
+            <span>40</span>
+            <span>50</span>
+            <span>60</span>
+            <span>70</span>
+            <span>80</span>
+            <span>90</span>
+            <span>100</span>
+          </div>
         </div>
       </FormControl>
 
