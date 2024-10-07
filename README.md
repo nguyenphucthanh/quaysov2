@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+# Quay số V2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ứng dụng quay số - đúng với tên gọi của nó - giúp các bạn tổ chức quay số ngẫu nhiên.
 
-Currently, two official plugins are available:
+## Tại sao lại là V2?
+V1 được phát triển cách đây khá lâu rồi, với rất ít tính năng. Tất nhiên tính năng chính vẫn là quay số, cho phép bạn chọn min và max, thay đổi hình nền, tuy nhiên những thứ khác không thể thay đổi, không thể trang trí v.v...
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tính năng
+- Quay số
+- Lưu lịch sử quay số
+- Cho phép điều chỉnh min và max
+- Cho phép điều chỉnh tiêu đề chính và phụ, banner
+- Cho phép điều chỉnh nhãn nút bấm
+- Cho phép điều chỉnh theme, có nhiều bộ theme cho bạn chọn
+- Cho phép điều chỉnh background (up hình)
+- Âm thanh quay số
+- Hiệu ứng chúc mừng emoji (có thể lựa emoji thoải mái)
 
-## Expanding the ESLint configuration
+## Cài đặt
+- Xả nén file zip tương ứng với hệ điều hành của bạn.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Development
+### Tech stack
+- [Electron](https://www.electronjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Electron Forge](https://www.electronforge.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Zustand](https://github.com/pmndrs/zustand)
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Start development
+```
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Package application
+```
+npm run package
+```
