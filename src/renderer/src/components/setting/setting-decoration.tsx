@@ -1,5 +1,4 @@
 import { FormControl } from "@components/ui/form-control";
-import { useAnimatedEmoji } from "@hooks/useAnimatedEmoji";
 import { useSettingStore } from "@store/setting";
 import { FC, useCallback } from "react";
 import EmojiPicker from "emoji-picker-react";
@@ -47,7 +46,6 @@ const themes = [
 
 export const SettingDecoration: FC = () => {
   const settingStore = useSettingStore();
-  const { isAnimating, startAnimation } = useAnimatedEmoji();
 
   const handleSelectImage = useCallback(() => {
     // @ts-expected-error electron is defined
@@ -129,36 +127,6 @@ export const SettingDecoration: FC = () => {
         </div>
       </FormControl>
 
-      <FormControl label="Độ trong suốt của hộp số" name="boxNumber">
-        <div className="bg-base-300 p-2 rounded-xl">
-          <input
-            title="Độ trong suốt của hộp số"
-            type="range"
-            min={0}
-            max="100"
-            step={10}
-            value={settingStore.ballotBoxOpacity}
-            className="range"
-            onChange={(e) => {
-              settingStore.setBallotBoxOpacity(parseInt(e.target.value));
-            }}
-          />
-          <div className="w-full flex justify-between text-xs">
-            <span>0</span>
-            <span>10</span>
-            <span>20</span>
-            <span>30</span>
-            <span>40</span>
-            <span>50</span>
-            <span>60</span>
-            <span>70</span>
-            <span>80</span>
-            <span>90</span>
-            <span>100</span>
-          </div>
-        </div>
-      </FormControl>
-
       <FormControl label="Hiệu ứng chúc mừng" name="congratEffect">
         <div className="bg-base-300 p-2 rounded-xl">
           <div className="flex flex-wrap gap-2 mb-3">
@@ -202,17 +170,9 @@ export const SettingDecoration: FC = () => {
                 onChange={(e) => {
                   settingStore.setEnableCongratEffect(e.target.checked);
                 }}
-                disabled={isAnimating}
               />
             </label>
           </div>
-          <button
-            className="btn btn-secondary"
-            disabled={isAnimating || !settingStore.enableCongratEffect}
-            onClick={startAnimation}
-          >
-            Test
-          </button>
         </div>
       </FormControl>
 
