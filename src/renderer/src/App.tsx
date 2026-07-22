@@ -1,4 +1,3 @@
-import "./App.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./routes/home";
 import { useTheme } from "@hooks/useTheme";
