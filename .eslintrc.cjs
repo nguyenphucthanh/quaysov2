@@ -9,7 +9,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs", "electron.vite.config.ts"],
+  ignorePatterns: ["dist", "out", ".eslintrc.cjs", "electron.vite.config.ts"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
@@ -18,6 +18,11 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   plugins: ["react-refresh"],
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
   rules: {
     "react-refresh/only-export-components": [
       "warn",
@@ -25,4 +30,11 @@ module.exports = {
     ],
     "@typescript-eslint/consistent-type-definitions": ["off"],
   },
+  overrides: [
+    {
+      // react-three-fiber uses three.js props the DOM-oriented rule can't know.
+      files: ["src/renderer/src/components/ballot-scene/**/*.tsx"],
+      rules: { "react/no-unknown-property": "off" },
+    },
+  ],
 };

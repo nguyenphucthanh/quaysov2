@@ -4,6 +4,14 @@ import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 // import icon from '../../resources/icon.png?asset'
 import fs from "fs-extra";
 
+// Enable hardware graphic acceleration and GPU performance flags
+app.commandLine.appendSwitch("ignore-gpu-blocklist");
+app.commandLine.appendSwitch("enable-gpu-rasterization");
+app.commandLine.appendSwitch("enable-zero-copy");
+app.commandLine.appendSwitch("force_high_performance_gpu");
+app.commandLine.appendSwitch("enable-accelerated-2d-canvas");
+app.commandLine.appendSwitch("enable-webgl");
+
 function createWindow(): void {
   const icon = nativeImage.createFromPath(join(__dirname, "../icon.png"));
   // Create the browser window.
@@ -16,6 +24,7 @@ function createWindow(): void {
     webPreferences: {
       preload: join(__dirname, "../preload/preload.mjs"),
       sandbox: false,
+      webgl: true,
     },
     icon,
     title: "Quay số",
