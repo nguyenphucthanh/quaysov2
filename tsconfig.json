@@ -21,13 +21,12 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Import */
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/renderer/src/components/*"],
-      "@store/*": ["src/renderer/src/store/*"],
-      "@lib/*": ["src/renderer/src/lib/*"],
-      "@hooks/*": ["src/renderer/src/hooks/*"],
-      "@/*": ["src/renderer/src*"]
+      "@components/*": ["./src/renderer/src/components/*"],
+      "@store/*": ["./src/renderer/src/store/*"],
+      "@lib/*": ["./src/renderer/src/lib/*"],
+      "@hooks/*": ["./src/renderer/src/hooks/*"],
+      "@/*": ["./src/renderer/src*"]
     }
   },
   "include": ["src"],
